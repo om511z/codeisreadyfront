@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="Codeisready"
+      content="Mini & Major Projects"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+   
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ 
+    <title>Codeisready</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+     
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/js/all.min.js" integrity="sha512-cyAbuGborsD25bhT/uz++wPqrh5cqPh1ULJz4NSpN9ktWcA6Hnh9g+CWKeNx2R0fgQt+ybRXdabSBgYXkQTTmA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+<script>
+    AOS.init({
+        offset: 400,
+        duration: 1000,
+        easing: 'ease'
+    });
+</script>
+    <script>
+      	let i=2;
+
+
+$(document).ready(function(){
+  var radius = 180;
+  var fields = $('.itemDot');
+  var container = $('.dotCircle');
+  var width = container.width();
+radius = width/2.5;
+
+   var height = container.height();
+  var angle = 0, step = (2*Math.PI) / fields.length;
+  fields.each(function() {
+    var x = Math.round(width/2 + radius * Math.cos(angle) - $(this).width()/2);
+    var y = Math.round(height/2 + radius * Math.sin(angle) - $(this).height()/2);
+    if(window.console) {
+      console.log($(this).text(), x, y);
+    }
+    
+    $(this).css({
+      left: x + 'px',
+      top: y + 'px'
+    });
+    angle += step;
+  });
+  
+  
+  $('.itemDot').click(function(){
+    
+    var dataTab= $(this).data("tab");
+    $('.itemDot').removeClass('active');
+    $(this).addClass('active');
+    $('.CirItem').removeClass('active');
+    $( '.CirItem'+ dataTab).addClass('active');
+    i=dataTab;
+    
+  
+    
+    
+  });
+  
+  setInterval(function(){
+    var dataTab= $('.itemDot.active').data("tab");
+    if(dataTab>6||i>6){
+    dataTab=1;
+    i=1;
+    }
+    $('.itemDot').removeClass('active');
+    $('[data-tab="'+i+'"]').addClass('active');
+    $('.CirItem').removeClass('active');
+    $( '.CirItem'+i).addClass('active');
+    i++;
+    
+    
+  
+    
+    }, 8000);
+
+    
+
+
+
+        
+});
+
+
+
+    </script>
+  </body>
+</html>
